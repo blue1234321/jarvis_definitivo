@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>COSMOS JARVIS — STANDARD</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#050a0f;color:#e4faff}
+body{display:flex;justify-content:center;padding:32px;background:radial-gradient(circle at 50% 10%,rgba(0,190,255,.14),transparent 36%),linear-gradient(135deg,#03070b,#0b151d 55%,#03070b)}
+.card{width:min(1050px,100%);padding:38px;border:1px solid #267f9e;border-radius:24px;background:rgba(8,17,24,.94);box-shadow:0 0 55px rgba(0,190,255,.13)}
+.badge{display:inline-block;border:1px solid #2b809b;border-radius:99px;padding:7px 13px;font-size:10px;letter-spacing:3px;color:#83d9eb}
+h1{font-size:clamp(42px,7vw,70px);letter-spacing:10px;margin:14px 0 5px}.sub{color:#86d3e4;letter-spacing:4px;font-size:12px}
+.intro{color:#a5bbc2;line-height:1.6;max-width:760px;margin:18px 0 28px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.plan{padding:25px;border:1px solid #285b70;border-radius:18px;background:#0b151d}
+.plan.premium{border-color:#a5405a}.plan h2{letter-spacing:3px;margin:0 0 7px}.price{font-size:30px;font-weight:900;margin:10px 0 16px}.price small{font-size:12px;color:#8aa3ab;font-weight:500}
+ul{list-style:none;padding:0;margin:0 0 22px;color:#bfd2d8}li{padding:8px 0;border-bottom:1px solid rgba(130,200,220,.08)}
+a,button{display:block;width:100%;padding:14px 18px;border-radius:12px;border:1px solid #328eaa;background:#102733;color:#fff;text-align:center;text-decoration:none;font-weight:800;letter-spacing:1px;cursor:pointer}
+.premium button{border-color:#b24b66;background:#24151c}
+.note{text-align:center;color:#718b94;font-size:11px;margin-top:22px;line-height:1.6}
+#status{margin-top:14px;text-align:center;font-size:12px;color:#87d6e7}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.card{padding:24px}}
+</style>
+
+<style id="cosmos-edition-skin">
+:root{--cosmos-primary:#ff2028;--cosmos-secondary:#08a9ff;--cosmos-accent:#08a9ff;}
+html,body{background:#02050a!important;color:#eef7ff!important;}
+body{background-image:linear-gradient(rgba(2,5,10,.86),rgba(2,5,10,.94)),url("cosmos-jarvis-hud.png")!important;background-size:cover!important;background-position:center top!important;background-attachment:fixed!important;}
+button,a{border-color:#08a9ff!important;}
+h1,h2,h3{text-shadow:0 0 16px #08a9ff;}
+body:before{content:"";position:fixed;inset:12px;pointer-events:none;z-index:9998;border:1px solid #08a9ff;box-shadow:inset 0 0 35px rgba(0,0,0,.2);}
+body:after{content:"JARVIS  •  COSMOS  •  STANDARD";position:fixed;left:28px;top:18px;z-index:9999;pointer-events:none;font:700 11px system-ui,sans-serif;letter-spacing:3px;color:#08a9ff;text-shadow:0 0 10px #08a9ff;}
+ .standard-locked{opacity:.45!important;cursor:not-allowed!important;border-color:#5b7180!important;background:#101820!important;color:#9aaab2!important;}
+</style>
+<script>
+window.COSMOS_PRIMARY_AI='JARVIS';
+window.COSMOS_EDITION='STANDARD';
+window.COSMOS_THEME={primary:'#ff2028',secondary:'#08a9ff',accent:'#08a9ff'};
+window.COSMOS_INCLUDED=['JARVIS', 'VISIÓN', 'BLUE-IA'];
+window.COSMOS_EXCLUDED=['KAREN', 'EDITH'];
+</script>
+
+</head>
+<body>
+<main class="card">
+  <span class="badge">COSMOS · JARVIS · EDICIONES</span>
+  <h1>JARVIS</h1>
+  <div class="sub">ELIGE TU EDICIÓN</div>
+  <p class="intro">La edición STANDARD está actualmente en desarrollo. La descarga se habilitará cuando sea autorizada. La edición PREMIUM contiene la versión completa y funciona mediante una suscripción mensual de $15.</p>
+  <section class="grid">
+    <article class="plan">
+      <h2>STANDARD</h2>
+      <div class="price">GRATIS</div>
+      <ul>
+        <li>⏳ DESARROLLANDO</li>
+        <li>✓ Perfil optimizado para uso ligero</li>
+        <li>✓ Núcleo JARVIS y funciones principales</li>
+        <li>✓ Requiere Internet para las funciones online</li>
+      </ul>
+      <button class="standard-locked" type="button" disabled>🔒 DESCARGA BLOQUEADA · EN DESARROLLO</button>
+    </article>
+    <article class="plan premium">
+      <h2>PREMIUM</h2>
+      <div class="price">$15 <small>/ mes</small></div>
+      <ul>
+        <li>✓ Versión completa</li>
+        <li>✓ Todas las mecánicas compatibles</li>
+        <li>✓ Acceso durante 30 días por ciclo</li>
+        <li>✓ Al terminar el mes, el acceso Premium se detiene</li>
+      </ul>
+      <button onclick="startPremium()">◈ OBTENER PREMIUM</button>
+      <div style="margin-top:12px">
+        <input id="secret" type="password" placeholder="Código secreto Premium"
+          style="width:100%;padding:12px;border-radius:10px;border:1px solid #5b3440;background:#0c1015;color:#fff">
+        <button onclick="unlockPremium()" style="margin-top:8px">🔐 ACTIVAR CÓDIGO</button>
+      </div>
+    </article>
+  </section>
+  <div id="status"></div>
+  <div class="note">El control de 30 días está integrado en la edición Premium. El cobro real de $15/mes todavía necesita conectarse a un proveedor de pagos; esta página no cobra dinero por sí sola.</div>
+</main>
+<script>
+function unlockPremium(){
+  const code = (document.getElementById('secret')?.value || '').trim().toUpperCase();
+  const status = document.getElementById('secret-status');
+  const download = document.getElementById('premium-download');
+  if(code === 'PIKARI'){
+    localStorage.setItem('JARVIS_PREMIUM_PIKARI','1');
+    if(status) status.textContent = '✓ Premium permanente activado.';
+    if(download) download.style.display = 'inline-flex';
+  } else {
+    if(status) status.textContent = 'Código incorrecto.';
+    if(download) download.style.display = 'none';
+  }
+}
+function startPremium(){
+  document.getElementById('status').textContent='Premium: $15/mes · acceso completo durante 30 días por ciclo. Descarga la edición Premium y activa la suscripción desde ella.';
+  const a=document.createElement('a');
+  a.href='COSMOS%20DEFINITIVO%20-%20PREMIUM.html';a.download='COSMOS DEFINITIVO - PREMIUM.html';a.click();
+}
+</script>
+<a id="premium-download"
+href="COSMOS%20DEFINITIVO%20-%20PREMIUM.html"
+download
+style="display:none;margin-top:12px;padding:12px 18px;border:1px solid rgba(0,255,255,.65);border-radius:10px;color:#fff;text-decoration:none;font-weight:700;background:rgba(0,180,255,.12);">
+⬇ DESCARGAR VERSIÓN COMPLETA
+</a>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(localStorage.getItem('JARVIS_PREMIUM_PIKARI')==='1'){
+    const s=document.getElementById('secret-status');
+    const d=document.getElementById('premium-download');
+    if(s)s.textContent='✓ Premium permanente activado.';
+    if(d)d.style.display='inline-flex';
+  }
+});
+</script>
+</body>
+</html>
+
+<style>
+/* EDICIÓN STANDARD: sin KAREN ni VISIÓN */
+[data-core="KAREN"], [data-core="VISION"], [data-core="VISIÓN"],
+#karen, #vision, #karen-core, #vision-core,
+.karen, .vision, .module-karen, .module-vision {
+  display:none !important;
+  visibility:hidden !important;
+}
+</style>
+<script>
+window.COSMOS_EDITION='STANDARD';
+window.STANDARD_DISABLED_IA=['KAREN','VISION'];
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('[data-core="KAREN"],[data-core="VISION"],[data-core="VISIÓN"]').forEach(e=>e.remove());
+  document.querySelectorAll('button,a').forEach(e=>{
+    const t=(e.textContent||'').toUpperCase();
+    if(t.includes('KAREN') || t.includes('VISIÓN') || t.includes('VISION')){
+      e.style.display='none';
+    }
+  });
+});
+</script>
+
+<script>
+window.COSMOS_PRIMARY_AI = 'JARVIS';
+window.JARVIS_PRIMARY = true;
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('[data-ai-name="EDITH"]').forEach(function(el){
+    if ((el.textContent || '').toUpperCase().includes('SISTEMA')) {
+      el.textContent = el.textContent.replace(/EDITH/gi, 'JARVIS');
+    }
+  });
+});
+</script>
+
+<style>
+/* STANDARD: KAREN y EDITH no existen en esta edición */
+[data-core="KAREN"],[data-core="EDITH"],
+#karen,#edith,#karen-core,#edith-core,
+.karen,.edith,.module-karen,.module-edith{display:none!important;visibility:hidden!important;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('button,a,[data-core]').forEach(function(el){
+    const t=(el.textContent||'').toUpperCase();
+    if(t.includes('KAREN') || t.includes('EDITH')) el.style.display='none';
+  });
+});
+</script>
